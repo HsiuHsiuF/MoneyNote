@@ -22,17 +22,12 @@ public class NoteController {
 
     //根據USER_ID尋找NOTE
     @GetMapping("/moneynotes")
-    public String getNote(@SessionAttribute(value = "user") UserEntity userEntity, Model model) {
-        List<NoteEntity> moneyList = noteServiceImpl.getNoteByUserId(userEntity.getId());
+    public String getNote(@SessionAttribute(value = "user") UserEntity userEntity, Model model, @RequestParam(value = "month") Integer month) {
+        List<NoteEntity> moneyList = noteServiceImpl.getNoteByUserIdAndMonth(userEntity.getId(), month);
         model.addAttribute("moneyList", moneyList);
         NoteEntity noteEntity = new NoteEntity();
         model.addAttribute("moneyObject", noteEntity);
-        Integer add = 0;
-        for(int i = 0; i < moneyList.size(); i++){
-            Integer num = moneyList.get(i).getPay();
-            add+=num;
-        }
-        model.addAttribute("add", add);
+
         return "moneyList";
     }
 

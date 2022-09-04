@@ -1,6 +1,8 @@
 package com.example.MoneyNote.model;
 import lombok.Data;
 import javax.persistence.*;
+import java.util.Date;
+
 @Entity
 @Table(name = "money")
 @Data
@@ -10,7 +12,7 @@ public class NoteEntity {
     Integer id;
 
     @Column(name="date")
-     String date;
+    String date;
 
     @Column(name="name")
      String name;

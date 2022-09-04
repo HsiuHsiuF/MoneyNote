@@ -22,9 +22,9 @@ public class NoteDapImpl implements NoteDao {
     private NamedParameterJdbcTemplate jdbcNameTemplate;
 
     @Override
-    public List<NoteEntity> findByUser_id(Integer user_id){
-        String sql = " SELECT * FROM money WHERE USER_ID = ?";
-        List<NoteEntity> result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<NoteEntity>(NoteEntity.class)/*資料庫欄位自動對應實體變數*/, new Object[] { user_id });
+    public List<NoteEntity> findByUser_idAndMonth(Integer user_id, Integer month){
+        String sql = " SELECT * FROM money WHERE USER_ID = ? AND MONTH(date) =?";
+        List<NoteEntity> result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<NoteEntity>(NoteEntity.class)/*資料庫欄位自動對應實體變數*/, user_id, month);
         if(result != null) {
             return result;
         }

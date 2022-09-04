@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/style.css}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="js/lib/jquery-3.4.1.js" type="text/javascript" charset="utf-8"></script>
     <title>記帳本</title>
 </head>
 <body>
@@ -30,18 +29,19 @@
             <span class="close" th:onclick="'javascript:deleteNote(event,this,' + ${list.id} + ')'">x</span>
         </li>
     </ul>
-    <div th:text="${add}"></div>
     <div id="add"></div>
 
 </div>
 <script th:inline="javascript">
-let single = [[${moneyList}]];
-let add = 0;
-single.forEach(function(value, index, array){
-add+=array[index]["pay"]
-});
-console.log(add);
-$("#add").html(add);
+    let note = [[${moneyList}]];
+    let add = 0;
+
+    note.forEach(function(value, index, array){
+        add+=array[index]["pay"]
+    });
+
+    document.getElementById("add").textContent = add;
+
 </script>
 <script>
     const addNote = () => {
@@ -96,6 +96,7 @@ $("#add").html(add);
             },
         }).then(function(response) {
             element.parentNode.parentNode.parentNode.removeChild(element.parentNode.parentNode);
+             location.reload();
         })
     }
 </script>

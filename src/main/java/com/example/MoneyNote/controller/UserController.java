@@ -34,7 +34,8 @@ public class UserController {
             return "redirect:login";
         }
         session.setAttribute("user", user);
-        return "redirect:/moneynotes";
+
+        return "redirect:/moneynotes/?month=9";
     }
 
     //註冊頁面
