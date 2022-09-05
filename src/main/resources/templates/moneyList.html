@@ -9,7 +9,12 @@
 <body>
 <section th:replace="load/header :: header"></section>
 <div class="container">
-    <h2>MoneyNote</h2>
+    <h2 th:text="${name}"></h2>
+        <form th:action="@{/moneynotes}" method="get">
+            <input type="text" name="year" maxlength="4" placeholder="年" required>
+            <input type="text" name="month" maxlength="2" placeholder="月" required>
+            <button type="submit" >search</button>
+        </form>
         <form class="header" th:action="@{/moneynotes}" th:object="${moneyObject}" method="post">
             <input type="text" class="input" placeholder="消費名稱" th:field="*{name}">
             <input type="text" class="input" placeholder="金額" th:field="*{pay}">
@@ -41,7 +46,6 @@
     });
 
     document.getElementById("add").textContent = add;
-
 </script>
 <script>
     const addNote = () => {

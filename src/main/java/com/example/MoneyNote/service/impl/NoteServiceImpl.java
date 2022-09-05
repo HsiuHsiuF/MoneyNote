@@ -17,8 +17,8 @@ public class NoteServiceImpl implements NoteService {
     NoteDapImpl noteDaoImpl;
 
     @Override
-    public List<NoteEntity> getNoteByUserIdAndMonth(Integer id, Integer month) {
-        return noteDaoImpl.findByUser_idAndMonth(id, month);
+    public List<NoteEntity> getNoteByUserIdAndDate(Integer id, Integer year, Integer month) {
+        return noteDaoImpl.findByUser_idAndDate(id, year, month);
     }
 
     @Override

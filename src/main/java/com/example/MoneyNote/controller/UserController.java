@@ -12,6 +12,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -34,8 +36,11 @@ public class UserController {
             return "redirect:login";
         }
         session.setAttribute("user", user);
-
-        return "redirect:/moneynotes/?month=9";
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH) +1;
+        return "redirect:/moneynotes?year="+year+"&month="+month;
     }
 
     //註冊頁面

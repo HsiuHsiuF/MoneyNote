@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.example.MoneyNote.model.NoteEntity;
 import javax.servlet.http.HttpSession;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -22,12 +24,13 @@ public class NoteController {
 
     //根據USER_ID尋找NOTE
     @GetMapping("/moneynotes")
-    public String getNote(@SessionAttribute(value = "user") UserEntity userEntity, Model model, @RequestParam(value = "month") Integer month) {
-        List<NoteEntity> moneyList = noteServiceImpl.getNoteByUserIdAndMonth(userEntity.getId(), month);
+    public String getNote(@SessionAttribute(value = "user") UserEntity userEntity, Model model, @RequestParam(value = "year") Integer year, @RequestParam(value = "month") Integer month) {
+        List<NoteEntity> moneyList = noteServiceImpl.getNoteByUserIdAndDate(userEntity.getId(), year, month);
         model.addAttribute("moneyList", moneyList);
         NoteEntity noteEntity = new NoteEntity();
         model.addAttribute("moneyObject", noteEntity);
-
+        String name = userEntity.getName()+" MoneyNote";
+        model.addAttribute("name", name);
         return "moneyList";
     }
 
@@ -46,7 +49,11 @@ public class NoteController {
     public String createNote(@ModelAttribute NoteEntity note, @SessionAttribute(value = "user") UserEntity userEntity) {
         note.setUser_id(userEntity.getId());
         noteServiceImpl.createNote(note);
-        return "redirect:/moneynotes";
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH) +1;
+        return "redirect:/moneynotes?year="+year+"&month="+month;
     }
 //    @ResponseBody
 //    @PutMapping("/todos/{id}")

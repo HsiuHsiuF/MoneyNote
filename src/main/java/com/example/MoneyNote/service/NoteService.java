@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface NoteService {
-    public List<NoteEntity> getNoteByUserIdAndMonth(Integer id, Integer month);
+    public List<NoteEntity> getNoteByUserIdAndDate(Integer id, Integer year, Integer month);
 
     public Integer createNote(NoteEntity noteEntity);
 
