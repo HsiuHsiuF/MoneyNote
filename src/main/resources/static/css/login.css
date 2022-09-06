@@ -2,35 +2,34 @@
 
 main {
     width: 320px;
-    color: #444;
     
-    text-align: center;
+    text-align: center;/*文字位置*/
     margin: 80px auto;
 }
 
 main h1 {
-    font-size: 36px;
-    font-weight: 600;
+    font-size: 36px;/*文字大小*/
+    font-weight: 600;/*文字寬度*/
 }
 
 main form {
-    display: grid;
+    display: grid;/*格線容器*/
 }
 
 .form-input {
     text-align: left;
-    margin-top: 32px;
+    margin-top: 32px;/*上邊界*/
 }
 
 .form-input .input-area {
     height: 40px;
     background-color: #FFF;
-    border-radius: 4px;
+    border-radius: 4px;/*圓角*/
 
     margin-top: 8px;
 
-    display: flex;
-    align-items: center;
+    display: flex;/*把容器排在同一行*/
+    align-items: center;/*以交錯軸線來做排版*/
 }
 
 .form-input .input-area .input-img {
@@ -50,7 +49,8 @@ main form {
     height: 100%;
     border: 0px;
     font-size: 16px;
-    padding: 0px;
+    padding: 0px;/*內距*/
+    border-radius: 4px;
 }
 
 main form button {
@@ -62,12 +62,13 @@ main form button {
     color: #FFF;
     font-size: 16px;
     margin: 64px auto 16px;
+    transition: 0.3s;
 }
 
 main form button:hover {
     background-color: #000;
     border: 1px solid #000;
-    cursor: pointer;
+    cursor: pointer;/*改變游標形狀*/
 }
 
 main form span {

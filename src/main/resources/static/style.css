@@ -4,7 +4,7 @@ body {
 
 .container {
     width: 50%;
-    margin: 10% auto;
+    margin: 10% auto;/*剩下的可用空間*/
 }
 
 ul {
@@ -38,7 +38,7 @@ ul li:hover {
 
 h2 {
     font-size: 32px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 /*ul li.checked {
@@ -93,22 +93,26 @@ ul li.checked::before {
     margin: 0;
     border: none;
     border-radius: 0;
-    width: 75%;
+    width: 97%;
     padding: 10px;
     float: left;
     font-size: 16px;
+}
+
+.check {
+    text-align:left;
 }
 
 .addBtn {
     padding: 8px;
     background: #C7AB7B;
     color: #5C4319;;
-    float: left;
+    float: right;
     text-align: center;
     font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    border-radius: 0;
+    cursor: pointer;/*滑鼠形狀*/
+    transition: 0.3s;/*轉場*/
+    border-radius: 50%;/*圓角*/
 }
 
 .addBtn:hover {
