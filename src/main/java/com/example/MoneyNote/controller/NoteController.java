@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.example.MoneyNote.model.NoteEntity;
-import javax.servlet.http.HttpSession;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -29,7 +28,7 @@ public class NoteController {
         model.addAttribute("moneyList", moneyList);
         NoteEntity noteEntity = new NoteEntity();
         model.addAttribute("moneyObject", noteEntity);
-        String name = userEntity.getName()+" MoneyNote";
+        String name = userEntity.getName();
         model.addAttribute("name", name);
         return "moneyList";
     }
@@ -55,11 +54,6 @@ public class NoteController {
         int month = cal.get(Calendar.MONTH) +1;
         return "redirect:/moneynotes?year="+year+"&month="+month;
     }
-//    @ResponseBody
-//    @PutMapping("/todos/{id}")
-//    public void upadteTodo(@PathVariable Integer id, @RequestBody Todo todo) {
-//        todoService.updateTodo(id ,todo);
-//    }
 
     @ResponseBody
     @DeleteMapping("/moneynotes/{id}")

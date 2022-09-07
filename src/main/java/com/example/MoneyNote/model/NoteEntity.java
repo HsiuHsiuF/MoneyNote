@@ -1,8 +1,7 @@
 package com.example.MoneyNote.model;
+
 import lombok.Data;
 import javax.persistence.*;
-import java.util.Date;
-
 @Entity
 @Table(name = "money")
 @Data

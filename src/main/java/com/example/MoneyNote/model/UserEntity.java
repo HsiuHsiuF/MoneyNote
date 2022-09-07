@@ -1,14 +1,10 @@
 package com.example.MoneyNote.model;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
-
 @Entity
 @Table(name = "user")
 @Data

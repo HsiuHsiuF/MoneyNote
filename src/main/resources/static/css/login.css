@@ -24,10 +24,8 @@ main form {
 .form-input .input-area {
     height: 40px;
     background-color: #FFF;
-    border-radius: 4px;/*圓角*/
-
+    box-shadow: 0px 10px 15px #666;
     margin-top: 8px;
-
     display: flex;/*把容器排在同一行*/
     align-items: center;/*以交錯軸線來做排版*/
 }
@@ -54,21 +52,19 @@ main form {
 }
 
 main form button {
-    width: 60%;
+    width: 15%;
     height: 40px;
-    background-color: #444;
-    border: 1px solid #444;
-    border-radius: 4px;
-    color: #FFF;
+    background-color: #C7AB7B;
+    color: #5C4319;
+    border-radius: 50%;
     font-size: 16px;
     margin: 64px auto 16px;
     transition: 0.3s;
 }
 
 main form button:hover {
-    background-color: #000;
-    border: 1px solid #000;
-    cursor: pointer;/*改變游標形狀*/
+    background-color: #bbb;
+    cursor: pointer;
 }
 
 main form span {

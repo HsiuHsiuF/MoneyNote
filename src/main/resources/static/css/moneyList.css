@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 body {
     background-color: #9DC7B7;
 }
@@ -7,13 +9,13 @@ body {
     margin: 10% auto;/*剩下的可用空間*/
 }
 
-ul {
+.list {
     padding: 0px;
 }
 
-ul li {
-    cursor: pointer;
-    position: relative;
+.list li {
+
+    position: relative;/*物件定位時所要的參考對像*/
     padding: 12px 8px 12px 40px;
     background: #eee;
     font-size: 18px;
@@ -27,13 +29,22 @@ ul li {
     /*選擇項目前面圖示*/
     list-style: none;
 }
-/*偽選取 odd基數 even偶數*/
-ul li:nth-child(odd) {
+/*偽選取 odd基數 even偶數
+list li:nth-child(odd) {
     background: #f9f9f9;
-}
+}*/
 /*當滑鼠移至某元件時的反應*/
-ul li:hover {
+.list li:hover {
     background: #ddd;
+}
+
+.listout {
+    display: flex;
+    align-items: center;
+}
+
+.listin {
+    width: 176px;
 }
 
 h2 {
@@ -41,26 +52,48 @@ h2 {
     font-weight: 600;
 }
 
-/*ul li.checked {
-    background: #6ACC8B;
-    color: #fff;
-    text-decoration: line-through;
-    border: 0.5px solid black;
+.search{
+    display: flex;
+    margin-bottom: 10px;
 }
 
-ul li.checked::before {
-    content: '';
-    position: absolute;
-    border-color: #fff;
-    border-style: solid;
-    border-width: 0 2px 2px 0;
-    top: 10px;
-    left: 16px;
-    transform: rotate(45deg);
-    height: 15px;
-    width: 7px;
+.searchform{
+    width: 200px
 }
-*/
+
+.searchin {
+    height: 33px;
+    width: 104px;
+    box-shadow: 0px 10px 15px #666;
+}
+
+.search .input{
+    width: 40px;
+    padding: 6px;
+    font-size: 18px;
+}
+
+.searchbtn{
+    padding: 8px;
+    background: #C7AB7B;
+    color: #5C4319;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;/*滑鼠形狀*/
+    transition: 0.3s;/*轉場*/
+    border-radius: 50%;/*圓角*/
+    margin-left: 12px;
+}
+
+.searchbtn:hover {
+    background-color: #bbb;
+}
+
+#add {
+    font-size: 25px;
+    font-weight: 600;
+}
+
 .close {
     position: absolute;
     right: 0;
@@ -74,19 +107,13 @@ ul li.checked::before {
 }
 
 
-.header {
+.addform {
     background-color: #B3C2D5;
     padding: 30px 40px;
     color: #5C4319;
     text-align: center;
     border-radius: 15px 15px 0 0;
     box-shadow: 0px 10px 15px #666;
-}
-
-.header:after {
-    content: "";
-    display: table;
-    clear: both;
 }
 
 .input {
@@ -97,6 +124,7 @@ ul li.checked::before {
     padding: 10px;
     float: left;
     font-size: 16px;
+    outline:medium;
 }
 
 .check {
@@ -106,7 +134,7 @@ ul li.checked::before {
 .addBtn {
     padding: 8px;
     background: #C7AB7B;
-    color: #5C4319;;
+    color: #5C4319;
     float: right;
     text-align: center;
     font-size: 16px;

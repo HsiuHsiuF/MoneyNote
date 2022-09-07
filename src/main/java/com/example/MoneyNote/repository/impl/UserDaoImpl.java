@@ -33,6 +33,8 @@ public class UserDaoImpl implements UserDao {
         return null;
     };
 
+
+    @Override
     public UserEntity findById(Integer id){
         String sql = " SELECT * FROM user WHERE id = ?";
         List<UserEntity> result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<UserEntity>(UserEntity.class)/*資料庫欄位自動對應實體變數*/, new Object[] { id });

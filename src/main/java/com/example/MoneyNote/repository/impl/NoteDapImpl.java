@@ -31,7 +31,6 @@ public class NoteDapImpl implements NoteDao {
         return null;
     };
 
-
     @Override
     public NoteEntity findById(Integer id){
         String sql = " SELECT * FROM money WHERE ID = ?";

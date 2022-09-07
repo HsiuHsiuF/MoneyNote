@@ -2,20 +2,38 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/style.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/moneyList.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <title>記帳本</title>
 </head>
 <body>
-<section th:replace="load/header :: header"></section>
+<header>
+    <section class="header">
+        <div class="logo" th:text="'Welcome ' + ${name}"></div>
+        <nav>
+            <ul>
+                <li><a th:href="@{/update}">修改密碼</a></li>
+                <li><a th:href="@{/logout}">登出</a></li>
+            </ul>
+        </nav>
+    </section>
+</header>
 <div class="container">
-    <h2 th:text="${name}"></h2>
-        <form th:action="@{/moneynotes}" method="get">
-            <input type="text" name="year" maxlength="4" placeholder="年" required>
-            <input type="text" name="month" maxlength="2" placeholder="月" required>
-            <button type="submit" >search</button>
-        </form>
-        <form class="header" th:action="@{/moneynotes}" th:object="${moneyObject}" method="post">
+        <div class="search">
+            <div class="searchform">
+                <form th:action="@{/moneynotes}" method="get" style="display: flex;">
+                    <div class="searchin">
+                        <input type="text" class="input" name="year" maxlength="4" placeholder="年" required>
+                        <input type="text" class="input" name="month" maxlength="2" placeholder="月" required>
+                    </div>
+                    <button type="submit" class="searchbtn">search</button>
+                </form>
+            </div>
+            <div id="add"></div>
+        </div>
+        <form class="addform" th:action="@{/moneynotes}" th:object="${moneyObject}" method="post">
             <input type="text" class="input" placeholder="消費名稱" th:field="*{name}">
             <input type="text" class="input" placeholder="金額" th:field="*{pay}">
             <br>
@@ -25,17 +43,17 @@
             <input type="radio" class="check" value="投資" th:field="*{billitem}"/>投資
             <button type="submit" class="addBtn">Add</button>
         </form>
-    <ul th:each="list: ${moneyList}">
+    <ul th:each="list: ${moneyList}" class="list">
         <li>
-            <span th:text="${list.date}"></span>
-            <span th:text="${list.name}"></span>
-            <span th:text="${list.pay}"></span>
-            <span th:text="${list.billitem}"></span>
-            <span class="close" th:onclick="'javascript:deleteNote(event,this,' + ${list.id} + ')'">x</span>
+            <div class="listout">
+                <div class="listin" th:text="${list.date}"></div>
+                <div class="listin" th:text="${list.name}"></div>
+                <div class="listin" th:text="${list.pay}"></div>
+                <div class="listin" th:text="${list.billitem}"></div>
+                <span class="close" th:onclick="'javascript:deleteNote(event,this,' + ${list.id} + ')'">x</span>
+            </div>
         </li>
     </ul>
-    <div id="add"></div>
-
 </div>
 <script th:inline="javascript">
     let note = [[${moneyList}]];
@@ -45,64 +63,9 @@
         add+=array[index]["pay"]
     });
 
-    document.getElementById("add").textContent = add;
+    document.getElementById("add").textContent = "Total: " + add;
 </script>
-<script>
-    const addNote = () => {
-        let name = document.getElementById('name').value;
-        let pay = document.getElementById('pay').value;
-        let billitem = document.getElementById('billitem').value;
+<script th:src="@{/js/moneyList.js}"></script>
 
-        const data = {
-            name: name,
-            pay: pay,
-            billitem: billitem
-        }
-        fetch('/moneynotes', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data),
-        }).then(function(response) {
-            location.reload();
-        })
-    }
-
-
-    const updateTodo = (element,id,status) => {
-        const notDone = 1;
-        const done = 2;
-        const data = {
-            status: status === done ? notDone : done
-        }
-        fetch('todos/' + id, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data),
-        }).then(function (response) {
-            if (status === done) {
-                element.classList.remove("checked");
-            } else {
-                element.classList.add("checked");
-            }
-            location.reload();
-        })
-    }
-    const deleteNote = (event,element,id) => {
-        event.stopPropagation();
-        fetch('moneynotes/'+ id, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        }).then(function(response) {
-            element.parentNode.parentNode.parentNode.removeChild(element.parentNode.parentNode);
-             location.reload();
-        })
-    }
-</script>
 </body>
 </html>

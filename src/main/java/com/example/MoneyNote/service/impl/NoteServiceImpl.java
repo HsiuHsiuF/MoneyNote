@@ -1,6 +1,5 @@
 package com.example.MoneyNote.service.impl;
 
-import com.example.MoneyNote.model.UserEntity;
 import com.example.MoneyNote.repository.impl.NoteDapImpl;
 import com.example.MoneyNote.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,20 +28,6 @@ public class NoteServiceImpl implements NoteService {
         noteEntity.setDate(date);
         return noteDaoImpl.save(noteEntity);
     }
-
-
-//    public NoteModel updateTodo(Integer id,NoteModel noteModel) {
-//        try {
-//            noteModel resTodo = findById(id);
-//            Integer status = todo.getStatus();
-//            resTodo.setStatus(status);
-//            return todoDao.save(resTodo);
-//        }catch (Exception exception) {
-//            return null;
-//        }
-
-//     }
-
     @Override
     public NoteEntity getNoteById(Integer id) {
         NoteEntity noteEntity = noteDaoImpl.findById(id);
